@@ -147,9 +147,9 @@ jobs:
         run: |
           cd target/${{ matrix.platform.target }}/release
           if [[ "${{ matrix.platform.os }}" == "windows-latest" ]]; then
-            7z a ../../../${{ matrix.platform.target }} ${{ matrix.platform.bin }}
+            7z a ../../../${{ matrix.platform.target }}.zip ${{ matrix.platform.bin }}
           else
-            zip ../../../${{ matrix.platform.target }} ${{ matrix.platform.bin }}
+            zip ../../../${{ matrix.platform.target }}.zip ${{ matrix.platform.bin }}
           fi
           cd -
         if: |
@@ -173,6 +173,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           draft: true
-          files: "hust-network-login*"
+          files: "*.zip"
           # body_path: Changes.md
+          token: ${{ secrets.GITHUB_TOKEN }}
         if: matrix.toolchain == 'stable' && startsWith( github.ref, 'refs/tags/v' )
