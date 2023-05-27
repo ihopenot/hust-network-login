@@ -175,7 +175,7 @@ jobs:
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v1
         with:
-          draft: true
+          # draft: true
           files: "*.zip"
           # body_path: Changes.md
           token: ${{ secrets.GITHUB_TOKEN }}
